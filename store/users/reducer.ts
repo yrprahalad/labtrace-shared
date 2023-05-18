@@ -17,7 +17,8 @@ const initialState: UserState = {
     jobTitle: "",
     isActive: false,
     userType: UserType.USER,
-    token: ''
+    token: '',
+    adminId: undefined
 };
 
 export function usersReducer(state = initialState, action: UserActionTypes): UserState {

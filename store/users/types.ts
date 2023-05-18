@@ -11,7 +11,8 @@ export interface UserState {
     jobTitle: string,
     isActive: boolean,
     userType: UserType,
-    token: string
+    token: string,
+    adminId: string | undefined
 };
 
 export interface UserLogin {

@@ -23,5 +23,3 @@ export const fetchUserData = (user: UserState): FetchUserInfo => {
         payload: user
     }
 };
-
-
