@@ -1,19 +1,21 @@
 export interface UserState {
     id: string,
     username: string,
-    employeeNo: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    hourlyChargingRate: number,
-    roles: Array<string>,
-    shiftPattern: IShiftPattern | undefined,
-    jobTitle: string,
-    isActive: boolean,
+    password: string,
+    token: string | undefined,
+    firstname: string | undefined,
+    lastname: string | undefined,
+    email: string | undefined,
+    employeeNumber: string | undefined,
+    description: string | undefined,
+    isActive: boolean | undefined,
+    hourlyChargingRate: number | undefined,
+    jobTitle: string | undefined,
+    adminID: string,
     userType: UserType,
-    token: string,
-    adminId: string | undefined
-};
+    roles: Array<[]> | undefined,
+    shiftPattern: ShiftPattern | undefined,
+}
 
 export interface UserLogin {
     username: string,
@@ -27,7 +29,7 @@ export enum UserType {
     SUPERADMIN = 'Super User'
 };
 
-export interface IShiftPattern {
+export interface ShiftPattern {
     from: string | Date,
     to: string | Date,
     descripton: string

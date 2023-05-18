@@ -1,6 +1,17 @@
 import { LoaderState } from "./loader/types";
 import { UserState } from "./users/types";
 
+export enum LearnEntityEnum {
+    USERS = 'Users',
+    USER_ROLES = 'User Roles',
+    ACCOUNTS = 'Accounts',
+    TANKS = 'Tanks',
+    PROCESS = 'Process',
+    SPECS = 'Specs',
+    PARTS = 'Parts',
+    SYSTEM_LICENSE = 'System License',
+};
+
 export interface ApplicationState {
     userInfo: UserState,
     loader: LoaderState

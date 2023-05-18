@@ -3,22 +3,20 @@ import { UserState, UserActionTypes, UserType, FETCH_USER_INFO } from "./types";
 const initialState: UserState = {
     id: "",
     username: "",
-    employeeNo: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    hourlyChargingRate: 0,
-    roles: [],
-    shiftPattern: {
-        from: '',
-        to: '',
-        descripton: ''
-    },
-    jobTitle: "",
-    isActive: false,
-    userType: UserType.USER,
-    token: '',
-    adminId: undefined
+    password: "",
+    token: undefined,
+    firstname: undefined,
+    lastname: undefined,
+    email: undefined,
+    employeeNumber: undefined,
+    description: undefined,
+    isActive: undefined,
+    hourlyChargingRate: undefined,
+    jobTitle: undefined,
+    adminID: "",
+    userType: UserType.ADMIN,
+    roles: undefined,
+    shiftPattern: undefined
 };
 
 export function usersReducer(state = initialState, action: UserActionTypes): UserState {
