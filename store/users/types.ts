@@ -15,6 +15,24 @@ export interface UserState {
     userType: UserType,
     roles: Array<[]> | undefined,
     shiftPattern: ShiftPattern | undefined,
+};
+
+export interface UserRegister {
+    username: string,
+    password: string,
+    token: string | undefined,
+    firstname: string | undefined,
+    lastname: string | undefined,
+    email: string | undefined,
+    employeeNumber: string | undefined,
+    description: string | undefined,
+    isActive: boolean | undefined,
+    hourlyChargingRate: number | undefined,
+    jobTitle: string | undefined,
+    adminID: string,
+    userType: UserType,
+    roles: Array<[]> | undefined,
+    shiftPattern: ShiftPattern | undefined,
 }
 
 export interface UserLogin {
