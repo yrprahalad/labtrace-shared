@@ -73,4 +73,4 @@ export interface FetchUsersForAdmin {
 };
 
 
-export type UserActionTypes = FetchCurrentUserInfo;
+export type UserActionTypes = FetchCurrentUserInfo | FetchUsersForAdmin;

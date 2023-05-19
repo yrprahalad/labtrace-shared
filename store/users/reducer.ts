@@ -1,4 +1,4 @@
-import { UserState, UserActionTypes, UserType, FETCH_USER_INFO } from "./types";
+import { UserState, UserActionTypes, UserType, FETCH_CURRENT_USER_INFO, FETCH_USERS_FOR_ADMIN } from "./types";
 import { IUser } from "./types";
 
 const currentLoggedInUser: IUser = {
@@ -27,10 +27,16 @@ const initialState: UserState = {
 
 export function usersReducer(state = initialState, action: UserActionTypes): UserState {
     switch (action.type) {
-        case FETCH_USER_INFO:
+        case FETCH_CURRENT_USER_INFO:
             return {
                 ...state,
                 currentLoggedInUser: action.payload,
+            };
+        case FETCH_USERS_FOR_ADMIN:
+            let users = state.users.concat(action.payload);
+            return {
+                ...state,
+                users: users,
             };
 
         default:
