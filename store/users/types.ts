@@ -1,7 +1,26 @@
-export interface UserState extends UserRegister {
-    id: string,
-    token: string | undefined,
+export interface UserState {
+    currentLoggedInUser: IUser,
+    users: Array<IUser>
 };
+
+export interface IUser {
+    _id: string,
+    token: string | undefined,
+    username: string,
+    password: string,
+    firstname: string | undefined,
+    lastname: string | undefined,
+    email: string | undefined,
+    employeeNumber: string | undefined,
+    description: string | undefined,
+    isActive: boolean | undefined,
+    hourlyChargingRate: number | undefined,
+    jobTitle: string | undefined,
+    adminID: string | undefined,
+    userType: UserType,
+    roles: Array<[]> | undefined,
+    shiftPattern: ShiftPattern | undefined,
+}
 
 export interface UserRegister {
     username: string,
@@ -38,11 +57,20 @@ export interface ShiftPattern {
     descripton: string
 };
 
-export const FETCH_USER_INFO = 'FETCH_USER_INFO';
+export const FETCH_CURRENT_USER_INFO = 'FETCH_CURRENT_USER_INFO';
+export const FETCH_USERS_FOR_ADMIN = 'FETCH_USERS_FOR_ADMIN';
 
-export interface FetchUserInfo {
-    type: typeof FETCH_USER_INFO,
-    payload: UserState
+export interface FetchCurrentUserInfo {
+    type: typeof FETCH_CURRENT_USER_INFO,
+    payload: IUser,
 };
 
-export type UserActionTypes = FetchUserInfo;
+
+export interface FetchUsersForAdmin {
+    type: typeof FETCH_USERS_FOR_ADMIN,
+    payload: IUser,
+    initialCall: boolean
+};
+
+
+export type UserActionTypes = FetchCurrentUserInfo;

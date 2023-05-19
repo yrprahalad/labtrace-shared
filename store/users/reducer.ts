@@ -1,10 +1,11 @@
 import { UserState, UserActionTypes, UserType, FETCH_USER_INFO } from "./types";
+import { IUser } from "./types";
 
-const initialState: UserState = {
-    id: "",
-    username: "",
-    password: "",
+const currentLoggedInUser: IUser = {
+    _id: '',
     token: undefined,
+    username: '',
+    password: '',
     firstname: undefined,
     lastname: undefined,
     email: undefined,
@@ -13,17 +14,23 @@ const initialState: UserState = {
     isActive: undefined,
     hourlyChargingRate: undefined,
     jobTitle: undefined,
-    adminID: "",
-    userType: UserType.ADMIN,
+    adminID: undefined,
+    userType: UserType.USER,
     roles: undefined,
-    shiftPattern: undefined
+    shiftPattern: undefined,
+}
+
+const initialState: UserState = {
+    currentLoggedInUser: currentLoggedInUser,
+    users: []
 };
 
 export function usersReducer(state = initialState, action: UserActionTypes): UserState {
     switch (action.type) {
         case FETCH_USER_INFO:
             return {
-                ...action.payload,
+                ...state,
+                currentLoggedInUser: action.payload,
             };
 
         default:
