@@ -20,7 +20,6 @@ export interface UserState {
 export interface UserRegister {
     username: string,
     password: string,
-    token: string | undefined,
     firstname: string | undefined,
     lastname: string | undefined,
     email: string | undefined,
@@ -29,17 +28,17 @@ export interface UserRegister {
     isActive: boolean | undefined,
     hourlyChargingRate: number | undefined,
     jobTitle: string | undefined,
-    adminID: string,
+    adminID: string | undefined,
     userType: UserType,
     roles: Array<[]> | undefined,
     shiftPattern: ShiftPattern | undefined,
-}
+};
 
 export interface UserLogin {
     username: string,
     password: string,
     userType: UserType,
-}
+};
 
 export enum UserType {
     ADMIN = 'Admin',
