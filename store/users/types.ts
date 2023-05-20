@@ -5,7 +5,7 @@ export interface UserState {
 
 export interface IUser {
     _id: string,
-    token: string | undefined,
+    token?: string | undefined,
     username: string,
     password: string,
     firstname: string | undefined,
