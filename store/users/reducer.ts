@@ -29,7 +29,7 @@ export function usersReducer(state = initialState, action: UserActionTypes): Use
     switch (action.type) {
         case FETCH_CURRENT_USER_INFO:
             return {
-                ...state,
+                ...state, 
                 currentLoggedInUser: action.payload,
             };
         case FETCH_USERS_FOR_ADMIN:
