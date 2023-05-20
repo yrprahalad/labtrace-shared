@@ -68,7 +68,7 @@ export interface FetchCurrentUserInfo {
 
 export interface FetchUsersForAdmin {
     type: typeof FETCH_USERS_FOR_ADMIN,
-    payload: IUser,
+    payload: Array<IUser>,
     initialCall: boolean
 };
 
