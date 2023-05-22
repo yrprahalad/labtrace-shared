@@ -31,15 +31,6 @@ export const userRegister = (userRegister: UserRegister): any => async function 
     try {
         await userRegisterAPI(userRegister);
         dispatch(setLoaderInfo(LoaderSeverityType.SUCCESS, `${userRegister.username} registered Successfully`, true));
-        try {
-            if (userRegister.adminID) {
-                const usersResponse = await getAllUsersForAdminAPI(userRegister.adminID);
-                let users: Array<IUser> = usersResponse.data;
-                console.log(users)
-            }
-        } catch (error: any) {
-            dispatch(setLoaderInfo(LoaderSeverityType.ERROR, apiErrorMessage(error), true));
-        }
     } catch (error: any) {
         dispatch(setLoaderInfo(LoaderSeverityType.ERROR, apiErrorMessage(error), true));
     }
@@ -60,7 +51,6 @@ export const getAllUsersForAdmin = (adminID: string): any => async function (dis
         let users: Array<IUser> = usersResponse.data;
         dispatch(setUsersForAdmin(users, true))
     } catch (error: any) {
-        console.log(error)
         dispatch(setLoaderInfo(LoaderSeverityType.ERROR, apiErrorMessage(error), true));
     }
 }

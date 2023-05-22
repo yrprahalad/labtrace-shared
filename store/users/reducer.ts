@@ -33,10 +33,9 @@ export function usersReducer(state = initialState, action: UserActionTypes): Use
                 currentLoggedInUser: action.payload,
             };
         case FETCH_USERS_FOR_ADMIN:
-            let users = state.users.concat(action.payload);
             return {
                 ...state,
-                users: users,
+                users: action.payload,
             };
 
         default:
