@@ -1,4 +1,4 @@
-import { UserState, UserActionTypes, UserType, FETCH_CURRENT_USER_INFO, FETCH_USERS_FOR_ADMIN } from "./types";
+import { UserState, UserActionTypes, UserType, FETCH_CURRENT_USER_INFO, FETCH_USERS_FOR_ADMIN, UserRegister, SET_USER_DATA_FOR_MODIFY } from "./types";
 import { IUser } from "./types";
 
 const currentLoggedInUser: IUser = {
@@ -18,18 +18,38 @@ const currentLoggedInUser: IUser = {
     userType: UserType.USER,
     roles: undefined,
     shiftPattern: undefined,
-}
+};
+
+const initialUserRegisterValue: UserRegister = {
+    username: '',
+    password: '',
+    firstname: undefined,
+    lastname: undefined,
+    email: undefined,
+    employeeNumber: undefined,
+    description: undefined,
+    isActive: false,
+    hourlyChargingRate: undefined,
+    jobTitle: undefined,
+    adminID: '',
+    userType: UserType.USER,
+    roles: undefined,
+    shiftPattern: undefined
+};
 
 const initialState: UserState = {
     currentLoggedInUser: currentLoggedInUser,
-    users: []
+    users: [],
+    modifyUser: {
+        userData: initialUserRegisterValue
+    }
 };
 
 export function usersReducer(state = initialState, action: UserActionTypes): UserState {
     switch (action.type) {
         case FETCH_CURRENT_USER_INFO:
             return {
-                ...state, 
+                ...state,
                 currentLoggedInUser: action.payload,
             };
         case FETCH_USERS_FOR_ADMIN:
@@ -37,6 +57,13 @@ export function usersReducer(state = initialState, action: UserActionTypes): Use
                 ...state,
                 users: action.payload,
             };
+
+        case SET_USER_DATA_FOR_MODIFY:
+            let modifyUser = { ...state.modifyUser, userData: action.payload }
+            return {
+                ...state,
+                modifyUser: modifyUser
+            }
 
         default:
             return state;

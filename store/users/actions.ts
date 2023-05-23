@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { FETCH_CURRENT_USER_INFO, FetchCurrentUserInfo, IUser, UserLogin, UserRegister, FetchUsersForAdmin, FETCH_USERS_FOR_ADMIN } from "./types";
+import { FETCH_CURRENT_USER_INFO, FetchCurrentUserInfo, IUser, UserLogin, UserRegister, FetchUsersForAdmin, FETCH_USERS_FOR_ADMIN, SetUserDataForModify, SET_USER_DATA_FOR_MODIFY } from "./types";
 import { getAllUsersForAdminAPI, userLoginAPI, userRegisterAPI } from './apis'
 import { setLoaderInfo } from "../loader/actions";
 import { LoaderSeverityType } from "../loader/types";
@@ -54,3 +54,11 @@ export const getAllUsersForAdmin = (adminID: string): any => async function (dis
         dispatch(setLoaderInfo(LoaderSeverityType.ERROR, apiErrorMessage(error), true));
     }
 }
+
+export const setUserDataForModify = (userData: UserRegister): SetUserDataForModify => {
+    console.log(userData)
+    return {
+        type: SET_USER_DATA_FOR_MODIFY,
+        payload: userData
+    }
+};

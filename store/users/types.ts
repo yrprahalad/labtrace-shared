@@ -1,6 +1,9 @@
 export interface UserState {
     currentLoggedInUser: IUser,
-    users: Array<IUser>
+    users: Array<IUser>,
+    modifyUser: {
+        userData : UserRegister
+    }
 };
 
 export interface IUser {
@@ -59,12 +62,11 @@ export interface ShiftPattern {
 
 export const FETCH_CURRENT_USER_INFO = 'FETCH_CURRENT_USER_INFO';
 export const FETCH_USERS_FOR_ADMIN = 'FETCH_USERS_FOR_ADMIN';
-
+export const SET_USER_DATA_FOR_MODIFY = 'SET_USER_DATA_FOR_MODIFY';
 export interface FetchCurrentUserInfo {
     type: typeof FETCH_CURRENT_USER_INFO,
     payload: IUser,
 };
-
 
 export interface FetchUsersForAdmin {
     type: typeof FETCH_USERS_FOR_ADMIN,
@@ -72,5 +74,10 @@ export interface FetchUsersForAdmin {
     initialCall: boolean
 };
 
+export interface SetUserDataForModify {
+    type : typeof SET_USER_DATA_FOR_MODIFY,
+    payload: UserRegister
+}
 
-export type UserActionTypes = FetchCurrentUserInfo | FetchUsersForAdmin;
+
+export type UserActionTypes = FetchCurrentUserInfo | FetchUsersForAdmin | SetUserDataForModify;
