@@ -2,7 +2,8 @@ export interface UserState {
     currentLoggedInUser: IUser,
     users: Array<IUser>,
     modifyUser: {
-        userData : UserRegister
+        userData : UserRegister,
+        isModifyModalOpen: boolean
     }
 };
 
@@ -63,6 +64,7 @@ export interface ShiftPattern {
 export const FETCH_CURRENT_USER_INFO = 'FETCH_CURRENT_USER_INFO';
 export const FETCH_USERS_FOR_ADMIN = 'FETCH_USERS_FOR_ADMIN';
 export const SET_USER_DATA_FOR_MODIFY = 'SET_USER_DATA_FOR_MODIFY';
+export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
 export interface FetchCurrentUserInfo {
     type: typeof FETCH_CURRENT_USER_INFO,
     payload: IUser,
@@ -77,7 +79,12 @@ export interface FetchUsersForAdmin {
 export interface SetUserDataForModify {
     type : typeof SET_USER_DATA_FOR_MODIFY,
     payload: UserRegister
+};
+
+export interface ToggleModifyUserModal {
+    type: typeof TOGGLE_MODIFY_USER_MODAL,
+    payload: boolean
 }
 
 
-export type UserActionTypes = FetchCurrentUserInfo | FetchUsersForAdmin | SetUserDataForModify;
+export type UserActionTypes = FetchCurrentUserInfo | FetchUsersForAdmin | SetUserDataForModify | ToggleModifyUserModal;

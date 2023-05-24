@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { FETCH_CURRENT_USER_INFO, FetchCurrentUserInfo, IUser, UserLogin, UserRegister, FetchUsersForAdmin, FETCH_USERS_FOR_ADMIN, SetUserDataForModify, SET_USER_DATA_FOR_MODIFY } from "./types";
+import { FETCH_CURRENT_USER_INFO, FetchCurrentUserInfo, IUser, UserLogin, UserRegister, FetchUsersForAdmin, FETCH_USERS_FOR_ADMIN, SetUserDataForModify, SET_USER_DATA_FOR_MODIFY, ToggleModifyUserModal, TOGGLE_MODIFY_USER_MODAL } from "./types";
 import { getAllUsersForAdminAPI, userLoginAPI, userRegisterAPI } from './apis'
 import { setLoaderInfo } from "../loader/actions";
 import { LoaderSeverityType } from "../loader/types";
@@ -27,10 +27,11 @@ export const setCurrentUserLoginData = (user: IUser): FetchCurrentUserInfo => {
     };
 };
 
-export const userRegister = (userRegister: UserRegister): any => async function (dispatch: Dispatch) {
+export const userRegister = (userRegister: UserRegister, done?: () => void): any => async function (dispatch: Dispatch) {
     try {
         await userRegisterAPI(userRegister);
         dispatch(setLoaderInfo(LoaderSeverityType.SUCCESS, `${userRegister.username} registered Successfully`, true));
+        done && done();
     } catch (error: any) {
         dispatch(setLoaderInfo(LoaderSeverityType.ERROR, apiErrorMessage(error), true));
     }
@@ -56,9 +57,15 @@ export const getAllUsersForAdmin = (adminID: string): any => async function (dis
 }
 
 export const setUserDataForModify = (userData: UserRegister): SetUserDataForModify => {
-    console.log(userData)
     return {
         type: SET_USER_DATA_FOR_MODIFY,
         payload: userData
     }
 };
+
+export const toggleModifyUserModal = (isOpen: boolean): ToggleModifyUserModal => {
+    return {
+        type: TOGGLE_MODIFY_USER_MODAL,
+        payload: isOpen
+    }
+}

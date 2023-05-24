@@ -1,4 +1,4 @@
-import { UserState, UserActionTypes, UserType, FETCH_CURRENT_USER_INFO, FETCH_USERS_FOR_ADMIN, UserRegister, SET_USER_DATA_FOR_MODIFY } from "./types";
+import { UserState, UserActionTypes, UserType, FETCH_CURRENT_USER_INFO, FETCH_USERS_FOR_ADMIN, UserRegister, SET_USER_DATA_FOR_MODIFY, TOGGLE_MODIFY_USER_MODAL } from "./types";
 import { IUser } from "./types";
 
 const currentLoggedInUser: IUser = {
@@ -41,7 +41,8 @@ const initialState: UserState = {
     currentLoggedInUser: currentLoggedInUser,
     users: [],
     modifyUser: {
-        userData: initialUserRegisterValue
+        userData: initialUserRegisterValue,
+        isModifyModalOpen: false
     }
 };
 
@@ -63,7 +64,14 @@ export function usersReducer(state = initialState, action: UserActionTypes): Use
             return {
                 ...state,
                 modifyUser: modifyUser
-            }
+            };
+
+        case TOGGLE_MODIFY_USER_MODAL:
+            let isModifyModalOpen = { ...state.modifyUser, isModifyModalOpen: action.payload }
+            return {
+                ...state,
+                modifyUser: isModifyModalOpen
+            };
 
         default:
             return state;
