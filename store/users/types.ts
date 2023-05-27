@@ -3,7 +3,8 @@ export interface UserState {
     users: Array<IUser>,
     modifyUser: {
         userData : UserRegister,
-        isModifyModalOpen: boolean
+        isModifyModalOpen: boolean,
+        modalType: ModalType
     }
 };
 
@@ -26,6 +27,11 @@ export interface IUser {
     shiftPattern: ShiftPattern | undefined,
 }
 
+export enum ModalType {
+    EDIT ='edit',
+    REGISTER = 'register',
+    VIEW = 'view'
+};
 export interface UserRegister {
     username: string,
     password: string,
@@ -83,7 +89,8 @@ export interface SetUserDataForModify {
 
 export interface ToggleModifyUserModal {
     type: typeof TOGGLE_MODIFY_USER_MODAL,
-    payload: boolean
+    modalType: ModalType,
+    isModifyModalOpen: boolean
 }
 
 

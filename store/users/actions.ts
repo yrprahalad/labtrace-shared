@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { FETCH_CURRENT_USER_INFO, FetchCurrentUserInfo, IUser, UserLogin, UserRegister, FetchUsersForAdmin, FETCH_USERS_FOR_ADMIN, SetUserDataForModify, SET_USER_DATA_FOR_MODIFY, ToggleModifyUserModal, TOGGLE_MODIFY_USER_MODAL } from "./types";
+import { FETCH_CURRENT_USER_INFO, FetchCurrentUserInfo, IUser, UserLogin, UserRegister, FetchUsersForAdmin, FETCH_USERS_FOR_ADMIN, SetUserDataForModify, SET_USER_DATA_FOR_MODIFY, ToggleModifyUserModal, TOGGLE_MODIFY_USER_MODAL, ModalType } from "./types";
 import { getAllUsersForAdminAPI, userLoginAPI, userRegisterAPI } from './apis'
 import { setLoaderInfo } from "../loader/actions";
 import { LoaderSeverityType } from "../loader/types";
@@ -63,9 +63,10 @@ export const setUserDataForModify = (userData: UserRegister): SetUserDataForModi
     }
 };
 
-export const toggleModifyUserModal = (isOpen: boolean): ToggleModifyUserModal => {
+export const toggleModifyUserModal = (isModifyModalOpen: boolean, modalType : ModalType): ToggleModifyUserModal => {
     return {
         type: TOGGLE_MODIFY_USER_MODAL,
-        payload: isOpen
+        isModifyModalOpen: isModifyModalOpen,
+        modalType: modalType
     }
 }
