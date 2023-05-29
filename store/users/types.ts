@@ -1,52 +1,27 @@
+
 export interface UserState {
-    currentLoggedInUser: IUser,
-    users: Array<IUser>,
-    modifyUser: {
-        userData : UserRegister,
-        isModifyModalOpen: boolean,
-        modalType: ModalType
-    }
+    currentLoggedInUser: User,
+    users: Array<User>
 };
 
-export interface IUser {
-    _id: string,
-    token?: string | undefined,
+export interface User {
     username: string,
-    password: string,
-    firstname: string | undefined,
-    lastname: string | undefined,
-    email: string | undefined,
-    employeeNumber: string | undefined,
-    description: string | undefined,
-    isActive: boolean | undefined,
-    hourlyChargingRate: number | undefined,
-    jobTitle: string | undefined,
-    adminID: string | undefined,
+    firstname: string,
+    lastname: string,
+    email: string,
+    employeeNumber: string,
+    description: string,
+    isActive: boolean,
+    hourlyChargingRate: number,
+    jobTitle: string,
     userType: UserType,
-    roles: Array<[]> | undefined,
+    roles: Array<[]>,
     shiftPattern: ShiftPattern | undefined,
-}
-
-export enum ModalType {
-    EDIT ='edit',
-    REGISTER = 'register',
-    VIEW = 'view'
 };
-export interface UserRegister {
-    username: string,
+
+export interface UserRegister extends User {
     password: string,
-    firstname: string | undefined,
-    lastname: string | undefined,
-    email: string | undefined,
-    employeeNumber: string | undefined,
-    description: string | undefined,
-    isActive: boolean | undefined,
-    hourlyChargingRate: number | undefined,
-    jobTitle: string | undefined,
-    adminID: string | undefined,
-    userType: UserType,
-    roles: Array<[]> | undefined,
-    shiftPattern: ShiftPattern | undefined,
+    confirmPassword: string
 };
 
 export interface UserLogin {
@@ -69,29 +44,19 @@ export interface ShiftPattern {
 
 export const FETCH_CURRENT_USER_INFO = 'FETCH_CURRENT_USER_INFO';
 export const FETCH_USERS_FOR_ADMIN = 'FETCH_USERS_FOR_ADMIN';
-export const SET_USER_DATA_FOR_MODIFY = 'SET_USER_DATA_FOR_MODIFY';
-export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
+
 export interface FetchCurrentUserInfo {
     type: typeof FETCH_CURRENT_USER_INFO,
-    payload: IUser,
+    payload: User,
 };
+
 
 export interface FetchUsersForAdmin {
     type: typeof FETCH_USERS_FOR_ADMIN,
-    payload: Array<IUser>,
+    payload: User,
     initialCall: boolean
 };
 
-export interface SetUserDataForModify {
-    type : typeof SET_USER_DATA_FOR_MODIFY,
-    payload: UserRegister
-};
 
-export interface ToggleModifyUserModal {
-    type: typeof TOGGLE_MODIFY_USER_MODAL,
-    modalType: ModalType,
-    isModifyModalOpen: boolean
-}
+export type UserActionTypes = FetchCurrentUserInfo | FetchUsersForAdmin;
 
-
-export type UserActionTypes = FetchCurrentUserInfo | FetchUsersForAdmin | SetUserDataForModify | ToggleModifyUserModal;
