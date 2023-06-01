@@ -13,7 +13,7 @@ export enum LearnEntityEnum {
 };
 
 export interface ApplicationState {
-    user: UserState,
+    tank: UserState,
     loader: LoaderState
 };
 

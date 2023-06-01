@@ -40,8 +40,8 @@ const initialUserRegisterValue: UserRegister = {
 const initialState: UserState = {
     currentLoggedInUser: currentLoggedInUser,
     users: [],
-    modifyUser: {
-        userData: initialUserRegisterValue,
+    modifyTank: {
+        tankData: initialUserRegisterValue,
         isModifyModalOpen: false
     }
 };
@@ -60,17 +60,17 @@ export function usersReducer(state = initialState, action: UserActionTypes): Use
             };
 
         case SET_USER_DATA_FOR_MODIFY:
-            let modifyUser = { ...state.modifyUser, userData: action.payload }
+            let modifyUser = { ...state.modifyTank, userData: action.payload }
             return {
                 ...state,
-                modifyUser: modifyUser
+                modifyTank: modifyUser
             };
 
         case TOGGLE_MODIFY_USER_MODAL:
-            let isModifyModalOpen = { ...state.modifyUser, isModifyModalOpen: action.payload }
+            let isModifyModalOpen = { ...state.modifyTank, isModifyModalOpen: action.payload }
             return {
                 ...state,
-                modifyUser: isModifyModalOpen
+                modifyTank: isModifyModalOpen
             };
 
         default:

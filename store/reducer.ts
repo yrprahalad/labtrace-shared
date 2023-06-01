@@ -4,7 +4,7 @@ import { usersReducer } from "./users/reducer";
 import { loaderReducer } from "./loader/reducer";
 
 const appReducer = combineReducers<ApplicationState>({
-    user: usersReducer,
+    tank: usersReducer,
     loader: loaderReducer,
 });
 

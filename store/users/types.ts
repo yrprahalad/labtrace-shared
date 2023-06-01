@@ -1,29 +1,15 @@
 export interface UserState {
     currentLoggedInUser: IUser,
     users: Array<IUser>,
-    modifyUser: {
-        userData : UserRegister,
+    modifyTank: {
+        tankData : UserRegister,
         isModifyModalOpen: boolean
     }
 };
 
-export interface IUser {
+export interface IUser extends UserRegister {
     _id: string,
     token?: string | undefined,
-    username: string,
-    password: string,
-    firstname: string | undefined,
-    lastname: string | undefined,
-    email: string | undefined,
-    employeeNumber: string | undefined,
-    description: string | undefined,
-    isActive: boolean | undefined,
-    hourlyChargingRate: number | undefined,
-    jobTitle: string | undefined,
-    adminID: string | undefined,
-    userType: UserType,
-    roles: Array<[]> | undefined,
-    shiftPattern: ShiftPattern | undefined,
 }
 
 export interface UserRegister {
