@@ -1,32 +1,28 @@
+
 export interface UserState {
-    currentLoggedInUser: IUser,
-    users: Array<IUser>,
-    modifyTank: {
-        tankData : UserRegister,
-        isModifyModalOpen: boolean
-    }
+    currentLoggedInUser: User,
+    users: Array<User>
 };
 
-export interface IUser extends UserRegister {
-    _id: string,
-    token?: string | undefined,
-}
-
-export interface UserRegister {
+export interface User {
     username: string,
+    firstname: string,
+    lastname: string,
     password: string,
-    firstname: string | undefined,
-    lastname: string | undefined,
-    email: string | undefined,
-    employeeNumber: string | undefined,
-    description: string | undefined,
-    isActive: boolean | undefined,
-    hourlyChargingRate: number | undefined,
-    jobTitle: string | undefined,
-    adminID: string | undefined,
+    email: string,
+    employeeNumber: string,
+    description: string,
+    isActive: boolean,
+    hourlyChargingRate: number,
+    jobTitle: string,
     userType: UserType,
-    roles: Array<[]> | undefined,
+    roles: Array<[]>,
     shiftPattern: ShiftPattern | undefined,
+};
+
+export interface UserRegister extends User {
+    password: string,
+    confirmPassword: string
 };
 
 export interface UserLogin {
@@ -49,28 +45,19 @@ export interface ShiftPattern {
 
 export const FETCH_CURRENT_USER_INFO = 'FETCH_CURRENT_USER_INFO';
 export const FETCH_USERS_FOR_ADMIN = 'FETCH_USERS_FOR_ADMIN';
-export const SET_USER_DATA_FOR_MODIFY = 'SET_USER_DATA_FOR_MODIFY';
-export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
+
 export interface FetchCurrentUserInfo {
     type: typeof FETCH_CURRENT_USER_INFO,
-    payload: IUser,
+    payload: User,
 };
+
 
 export interface FetchUsersForAdmin {
     type: typeof FETCH_USERS_FOR_ADMIN,
-    payload: Array<IUser>,
+    payload: User,
     initialCall: boolean
 };
 
-export interface SetUserDataForModify {
-    type : typeof SET_USER_DATA_FOR_MODIFY,
-    payload: UserRegister
-};
 
-export interface ToggleModifyUserModal {
-    type: typeof TOGGLE_MODIFY_USER_MODAL,
-    payload: boolean
-}
+export type UserActionTypes = FetchCurrentUserInfo | FetchUsersForAdmin;
 
-
-export type UserActionTypes = FetchCurrentUserInfo | FetchUsersForAdmin | SetUserDataForModify | ToggleModifyUserModal;
