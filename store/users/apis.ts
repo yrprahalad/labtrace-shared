@@ -14,7 +14,7 @@ export async function getAllUsersForAdminAPI(adminID: string) {
 // Refactored Functions 
 
 export async function loginUserApi(userInfo: UserLogin) {
-    return await axios.post(BASE_URL + 'user/login', userInfo);
+    return await axios.post(BASE_URL + 'auth/login', userInfo);
 };
 
 export async function addUserViaIdApi(id: string, user: User) {
