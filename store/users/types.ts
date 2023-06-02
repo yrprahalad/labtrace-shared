@@ -17,6 +17,7 @@ export const SET_USER_LOGIN = "SET_USER_LOGIN";
 export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
 export const SET_MY_USER_DATA_FOR_MODIFY = 'SET_USER_DATA_FOR_MODIFY';
 export interface User {
+    _id?: string
     username: string,
     firstname: string,
     lastname: string,
@@ -28,7 +29,9 @@ export interface User {
     jobTitle: string,
     userType: UserType,
     roles: Array<[]>,
+    password: string
     shiftPattern: ShiftPattern | undefined,
+    traceId: string
 };
 
 export enum ModalType {
