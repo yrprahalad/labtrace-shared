@@ -1,7 +1,9 @@
 export const apiErrorMessage = (error: any) => {
-    if (error.response && error.response.data) {
-        return error.response.data
-    } else if (error.message) {
+    if (error.response && error.response.data && typeof error.response.data === 'string') {
+        return error.response.data;
+    } else if (error.response && error.response.data && error.response.data.error && typeof error.response.data.error === 'string')
+        return error.response.data.error;
+    else if (error.message && typeof error.message === 'string') {
         return error.message;
-    } else return "Network Error"
+    } else return "Internal Server Error"
 }

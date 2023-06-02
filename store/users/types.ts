@@ -1,34 +1,38 @@
 export interface UserState {
-    currentLoggedInUser: IUser,
-    users: Array<IUser>,
+    loginInfo: {
+        token: string | undefined,
+        id: string | undefined
+    }
+    users: Array<User>,
+    myData: User | undefined,
     modifyUser: {
-        userData : UserRegister,
+        userData: UserRegister | undefined,
         isModifyModalOpen: boolean,
         modalType: ModalType
     }
 };
 
-export interface IUser {
-    _id: string,
-    token?: string | undefined,
+
+export const SET_USER_LOGIN = "SET_USER_LOGIN";
+export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
+export const SET_MY_USER_DATA_FOR_MODIFY = 'SET_USER_DATA_FOR_MODIFY';
+export interface User {
     username: string,
-    password: string,
-    firstname: string | undefined,
-    lastname: string | undefined,
-    email: string | undefined,
-    employeeNumber: string | undefined,
-    description: string | undefined,
-    isActive: boolean | undefined,
-    hourlyChargingRate: number | undefined,
-    jobTitle: string | undefined,
-    adminID: string | undefined,
+    firstname: string,
+    lastname: string,
+    email: string,
+    employeeNumber: string,
+    description: string,
+    isActive: boolean,
+    hourlyChargingRate: number,
+    jobTitle: string,
     userType: UserType,
-    roles: Array<[]> | undefined,
+    roles: Array<[]>,
     shiftPattern: ShiftPattern | undefined,
-}
+};
 
 export enum ModalType {
-    EDIT ='edit',
+    EDIT = 'edit',
     REGISTER = 'register',
     VIEW = 'view'
 };
@@ -49,42 +53,27 @@ export interface UserRegister {
     shiftPattern: ShiftPattern | undefined,
 };
 
-export interface UserLogin {
-    username: string,
-    password: string,
-    userType: UserType,
-};
-
 export enum UserType {
     ADMIN = 'Admin',
     USER = 'User',
     SUPERADMIN = 'Super User'
 };
 
+export interface UserLogin {
+    username: string,
+    password: string,
+    userType: UserType,
+};
+
+export interface LoginResponse {
+    token: string,
+    id: string
+}
+
 export interface ShiftPattern {
     from: string | Date,
     to: string | Date,
     descripton: string
-};
-
-export const FETCH_CURRENT_USER_INFO = 'FETCH_CURRENT_USER_INFO';
-export const FETCH_USERS_FOR_ADMIN = 'FETCH_USERS_FOR_ADMIN';
-export const SET_USER_DATA_FOR_MODIFY = 'SET_USER_DATA_FOR_MODIFY';
-export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
-export interface FetchCurrentUserInfo {
-    type: typeof FETCH_CURRENT_USER_INFO,
-    payload: IUser,
-};
-
-export interface FetchUsersForAdmin {
-    type: typeof FETCH_USERS_FOR_ADMIN,
-    payload: Array<IUser>,
-    initialCall: boolean
-};
-
-export interface SetUserDataForModify {
-    type : typeof SET_USER_DATA_FOR_MODIFY,
-    payload: UserRegister
 };
 
 export interface ToggleModifyUserModal {
@@ -93,5 +82,12 @@ export interface ToggleModifyUserModal {
     isModifyModalOpen: boolean
 }
 
-
-export type UserActionTypes = FetchCurrentUserInfo | FetchUsersForAdmin | SetUserDataForModify | ToggleModifyUserModal;
+export interface SetUserLogin {
+    type: typeof SET_USER_LOGIN,
+    payload: LoginResponse
+}
+export interface SetMyUserDataForModify {
+    type: typeof SET_MY_USER_DATA_FOR_MODIFY,
+    payload: UserRegister
+};
+export type UserActionTypes = SetMyUserDataForModify | ToggleModifyUserModal | SetUserLogin;
