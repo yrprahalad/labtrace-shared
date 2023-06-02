@@ -1,6 +1,6 @@
 
 export interface UserState {
-    loginInfo: {
+    loggedInInfo: {
         token: string | undefined,
         id: string | undefined
     }
@@ -16,6 +16,7 @@ export interface UserState {
 export const SET_USER_LOGIN = "SET_USER_LOGIN";
 export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
 export const SET_MY_USER_DATA_FOR_MODIFY = 'SET_USER_DATA_FOR_MODIFY';
+
 export interface User {
     _id?: string
     username: string,

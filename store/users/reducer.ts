@@ -2,7 +2,7 @@ import { UserState, UserActionTypes, UserType, TOGGLE_MODIFY_USER_MODAL, ModalTy
 import { User } from "./types";
 
 const initialState: UserState = {
-    loginInfo: {
+    loggedInInfo: {
         token: undefined,
         id: undefined
     },
@@ -20,7 +20,7 @@ export function usersReducer(state = initialState, action: UserActionTypes): Use
         case SET_USER_LOGIN: 
             return {
                 ...state,
-                loginInfo: action.payload
+                loggedInInfo: action.payload
             }
         case TOGGLE_MODIFY_USER_MODAL:
             let isModifyModalOpen = { ...state.modifyUser, isModifyModalOpen: action.isModifyModalOpen, modalType: action.modalType }
