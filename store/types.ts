@@ -1,5 +1,5 @@
 import { LoaderState } from "./loader/types";
-import { UserState } from "./users/types";
+import { ShiftPattern, User, UserState } from "./users/types";
 
 export enum LearnEntityEnum {
     USERS = 'Users',
@@ -16,6 +16,14 @@ export interface ApplicationState {
     user: UserState,
     loader: LoaderState
 };
+
+export interface MainDB {
+    myData: User
+    users: string[]
+    tanks: undefined
+    accounts: undefined
+    shiftPattern: Array<ShiftPattern> | undefined
+}
 
 export const LOGOUT_WITH_CLEAR_STATE = "LOGOUT_WITH_CLEAR_STATE";
 

@@ -1,3 +1,4 @@
+
 export interface UserState {
     loginInfo: {
         token: string | undefined,
@@ -11,7 +12,6 @@ export interface UserState {
         modalType: ModalType
     }
 };
-
 
 export const SET_USER_LOGIN = "SET_USER_LOGIN";
 export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
@@ -36,21 +36,10 @@ export enum ModalType {
     REGISTER = 'register',
     VIEW = 'view'
 };
-export interface UserRegister {
-    username: string,
+
+export interface UserRegister extends User {
     password: string,
-    firstname: string | undefined,
-    lastname: string | undefined,
-    email: string | undefined,
-    employeeNumber: string | undefined,
-    description: string | undefined,
-    isActive: boolean | undefined,
-    hourlyChargingRate: number | undefined,
-    jobTitle: string | undefined,
-    adminID: string | undefined,
-    userType: UserType,
-    roles: Array<[]> | undefined,
-    shiftPattern: ShiftPattern | undefined,
+    confirmPassword: string
 };
 
 export enum UserType {
