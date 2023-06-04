@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { User, UserLogin, UserRegister, SetMyUserDataForModify, SET_MY_USER_DATA_FOR_MODIFY, ToggleModifyUserModal, TOGGLE_MODIFY_USER_MODAL, ModalType, SetUserLogin, LoginResponse, SET_USER_LOGIN } from "./types";
+import { User, UserLogin, UserRegister, SetMyUserDataForModify, CONFIGURE_USER_DATA, TOGGLE_MODIFY_USER_MODAL, ModalType, SetUserLogin, LoginResponse, SET_USER_LOGIN, ToggleConfigureUserModal, ToggleConfigureUserDataModal, TOGGLE_CONFIGURE_USER_DATA_MODAL } from "./types";
 import { addUserViaIdApi, loginUserApi } from './apis'
 import { setLoaderInfo } from "../loader/actions";
 import { LoaderSeverityType } from "../loader/types";
@@ -37,17 +37,11 @@ export const addUserViaId = (id: string, user: User): any => async (dispatch: Di
     }
 };
 
-export const setMyUserDataForModify = (userData: UserRegister): SetMyUserDataForModify => {
+export const toggleConfigureUserModal = (configureUserData: UserRegister, modalType: ModalType, isModalOpen: boolean): ToggleConfigureUserDataModal => {
     return {
-        type: SET_MY_USER_DATA_FOR_MODIFY,
-        payload: userData
-    }
-};
-
-export const toggleModifyUserModal = (isModifyModalOpen: boolean, modalType: ModalType): ToggleModifyUserModal => {
-    return {
-        type: TOGGLE_MODIFY_USER_MODAL,
-        isModifyModalOpen: isModifyModalOpen,
-        modalType: modalType
+        type: TOGGLE_CONFIGURE_USER_DATA_MODAL,
+        configureUserData,
+        modalType,
+        isModalOpen
     }
 }

@@ -6,16 +6,18 @@ export interface UserState {
     }
     users: Array<User>,
     myData: User | undefined,
-    modifyUser: {
-        userData: UserRegister | undefined,
-        isModifyModalOpen: boolean,
+    configureUser: {
+        userData: UserRegister,
+        isConfigureModalOpen: boolean,
         modalType: ModalType
     }
 };
 
 export const SET_USER_LOGIN = "SET_USER_LOGIN";
 export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
-export const SET_MY_USER_DATA_FOR_MODIFY = 'SET_USER_DATA_FOR_MODIFY';
+export const CONFIGURE_USER_DATA = 'CONFIGURE_USER_DATA';
+export const TOGGLE_CONFIGURE_USER_DATA_MODAL = 'TOGGLE_CONFIGURE_USER_DATA_MODAL';
+
 
 export interface User {
     _id?: string
@@ -26,7 +28,7 @@ export interface User {
     employeeNumber: string,
     description: string,
     isActive: boolean,
-    hourlyChargingRate: number,
+    hourlyChargingRate: string,
     jobTitle: string,
     userType: UserType,
     roles: Array<[]>,
@@ -69,10 +71,10 @@ export interface ShiftPattern {
     descripton: string
 };
 
-export interface ToggleModifyUserModal {
+export interface ToggleConfigureUserModal {
     type: typeof TOGGLE_MODIFY_USER_MODAL,
     modalType: ModalType,
-    isModifyModalOpen: boolean
+    isConfigureModalOpen: boolean
 }
 
 export interface SetUserLogin {
@@ -80,7 +82,15 @@ export interface SetUserLogin {
     payload: LoginResponse
 }
 export interface SetMyUserDataForModify {
-    type: typeof SET_MY_USER_DATA_FOR_MODIFY,
+    type: typeof CONFIGURE_USER_DATA,
     payload: UserRegister
 };
-export type UserActionTypes = SetMyUserDataForModify | ToggleModifyUserModal | SetUserLogin;
+
+export interface ToggleConfigureUserDataModal {
+    type : typeof TOGGLE_CONFIGURE_USER_DATA_MODAL,
+    configureUserData: UserRegister,
+    isModalOpen: boolean,
+    modalType: ModalType
+}
+
+export type UserActionTypes = SetMyUserDataForModify | ToggleConfigureUserModal | SetUserLogin | ToggleConfigureUserDataModal;
