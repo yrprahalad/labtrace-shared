@@ -17,12 +17,10 @@ export interface ApplicationState {
     loader: LoaderState
 };
 
-export interface MainDB {
-    myData: User
-    users: string[]
+export interface TraceData {
+    myData: User,
+    users: Array<User>
     tanks: undefined
-    accounts: undefined
-    shiftPattern: Array<ShiftPattern> | undefined
 }
 
 export const LOGOUT_WITH_CLEAR_STATE = "LOGOUT_WITH_CLEAR_STATE";
@@ -30,5 +28,6 @@ export const LOGOUT_WITH_CLEAR_STATE = "LOGOUT_WITH_CLEAR_STATE";
 export interface ILogoutWithClearState {
     type: typeof LOGOUT_WITH_CLEAR_STATE
 };
+
 
 export type RootActionTypes = ILogoutWithClearState;

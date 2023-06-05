@@ -23,5 +23,5 @@ export async function addUserViaIdApi(id: string, user: User) {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json'
     };
-    return await axios.post(BASE_URL + 'addUser', { adminId: id, user }, { headers });
+    return await axios.post(BASE_URL + 'users/addUser', { adminId: id, user }, { headers });
 };

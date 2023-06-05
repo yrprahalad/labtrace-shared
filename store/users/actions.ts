@@ -1,9 +1,11 @@
 import { Dispatch } from "redux";
-import { User, UserLogin, UserRegister, SetMyUserDataForModify, CONFIGURE_USER_DATA, TOGGLE_MODIFY_USER_MODAL, ModalType, SetUserLogin, LoginResponse, SET_USER_LOGIN, ToggleConfigureUserModal, ToggleConfigureUserDataModal, TOGGLE_CONFIGURE_USER_DATA_MODAL } from "./types";
+import { User, UserLogin, UserRegister, SetMyUserDataForModify, CONFIGURE_USER_DATA, TOGGLE_MODIFY_USER_MODAL, ModalType, SetUserLogin, LoginResponse, SET_USER_LOGIN, ToggleConfigureUserModal, ToggleConfigureUserDataModal, TOGGLE_CONFIGURE_USER_DATA_MODAL, FetchTraceData, FETCH_USER_DATA, AddUsersToState, ADD_USERS_STATE } from "./types";
 import { addUserViaIdApi, loginUserApi } from './apis'
 import { setLoaderInfo } from "../loader/actions";
 import { LoaderSeverityType } from "../loader/types";
 import { apiErrorMessage } from "../../helpers/errors";
+import { getUserDataApi } from "../api";
+import { TraceData } from "../types";
 
 export const loginUser = (userLogin: UserLogin): any => async function (dispatch: Dispatch) {
     try {
@@ -26,11 +28,13 @@ const setUserLogin = (loginInfo: LoginResponse): SetUserLogin => {
     };
 };
 
-export const addUserViaId = (id: string, user: User): any => async (dispatch: Dispatch) => {
+export const addUserViaId = (id: string, user: User, done?: () => void): any => async (dispatch: Dispatch) => {
     try {
         await addUserViaIdApi(id, user).then(({ data }) => {
             const registerInfo = data;
+            dispatch(addUsersToState(false, user, undefined))
             dispatch(setLoaderInfo(LoaderSeverityType.SUCCESS, registerInfo, true));
+            done && done();
         })
     } catch (error) {
         dispatch(setLoaderInfo(LoaderSeverityType.ERROR, apiErrorMessage(error), true));
@@ -43,5 +47,33 @@ export const toggleConfigureUserModal = (configureUserData: UserRegister, modalT
         configureUserData,
         modalType,
         isModalOpen
+    }
+}
+
+export const getUserData = (id: string, done?: () => void): any => async (dispatch: Dispatch) => {
+    try {
+        await getUserDataApi(id).then(({ data }) => {
+            dispatch(fetchUserData(data));
+            done && done();
+        })
+    } catch (error) {
+        dispatch(setLoaderInfo(LoaderSeverityType.ERROR, apiErrorMessage(error), true));
+    }
+};
+
+
+const fetchUserData = (traceData: TraceData): FetchTraceData => {
+    return {
+        type: FETCH_USER_DATA,
+        payload: traceData
+    }
+}
+
+const addUsersToState = (initialCall: boolean, user: User | undefined, users: Array<User> | undefined): AddUsersToState => {
+    return {
+        type: ADD_USERS_STATE,
+        initialCall,
+        user,
+        users
     }
 }

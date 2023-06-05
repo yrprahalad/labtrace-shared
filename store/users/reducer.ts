@@ -1,5 +1,4 @@
-import { UserState, UserActionTypes, UserType, TOGGLE_MODIFY_USER_MODAL, ModalType, SET_USER_LOGIN, UserRegister, TOGGLE_CONFIGURE_USER_DATA_MODAL } from "./types";
-import { User } from "./types";
+import { UserState, UserActionTypes, UserType, TOGGLE_MODIFY_USER_MODAL, ModalType, SET_USER_LOGIN, UserRegister, TOGGLE_CONFIGURE_USER_DATA_MODAL, FETCH_USER_DATA, ADD_USERS_STATE } from "./types";
 
 export const initialUserRegister: UserRegister = {
     password: "",
@@ -51,6 +50,28 @@ export function usersReducer(state = initialState, action: UserActionTypes): Use
                 ...state,
                 configureUser: configureData
             };
+        case FETCH_USER_DATA:
+            return {
+                ...state,
+                myData: action.payload.myData,
+                users: action.payload.users
+            }
+        case ADD_USERS_STATE:
+            if (action.initialCall) {
+                return {
+                    ...state
+                }
+            } else {
+                if (action.user) {
+                    let users = state.users;
+                    users.push(action.user)
+                    return {
+                        ...state,
+                        users
+                    }
+                } else return { ...state }
+            }
+
 
         default:
             return state;

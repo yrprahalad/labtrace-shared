@@ -1,3 +1,4 @@
+import { TraceData } from "../types";
 
 export interface UserState {
     loggedInInfo: {
@@ -17,6 +18,8 @@ export const SET_USER_LOGIN = "SET_USER_LOGIN";
 export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
 export const CONFIGURE_USER_DATA = 'CONFIGURE_USER_DATA';
 export const TOGGLE_CONFIGURE_USER_DATA_MODAL = 'TOGGLE_CONFIGURE_USER_DATA_MODAL';
+export const FETCH_USER_DATA = "FETCH_USER_DATA";
+export const ADD_USERS_STATE = 'ADD_USERS_STATE';
 
 
 export interface User {
@@ -87,10 +90,21 @@ export interface SetMyUserDataForModify {
 };
 
 export interface ToggleConfigureUserDataModal {
-    type : typeof TOGGLE_CONFIGURE_USER_DATA_MODAL,
+    type: typeof TOGGLE_CONFIGURE_USER_DATA_MODAL,
     configureUserData: UserRegister,
     isModalOpen: boolean,
     modalType: ModalType
 }
+export interface FetchTraceData {
+    type: typeof FETCH_USER_DATA,
+    payload: TraceData
+}
 
-export type UserActionTypes = SetMyUserDataForModify | ToggleConfigureUserModal | SetUserLogin | ToggleConfigureUserDataModal;
+export interface AddUsersToState {
+    type: typeof ADD_USERS_STATE,
+    initialCall: boolean,
+    user: User | undefined,
+    users: Array<User> | undefined
+}
+
+export type UserActionTypes = SetMyUserDataForModify | ToggleConfigureUserModal | SetUserLogin | ToggleConfigureUserDataModal | FetchTraceData | AddUsersToState;

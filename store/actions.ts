@@ -1,5 +1,8 @@
 import { Dispatch } from "redux";
-import { ILogoutWithClearState, LOGOUT_WITH_CLEAR_STATE } from "./types";
+import { ILogoutWithClearState, LOGOUT_WITH_CLEAR_STATE, TraceData } from "./types";
+import { apiErrorMessage } from "../helpers/errors";
+import { setLoaderInfo } from "./loader/actions";
+import { LoaderSeverityType } from "./loader/types";
 
 export const logoutWithClearState = (): ILogoutWithClearState => {
     return {
@@ -7,7 +10,3 @@ export const logoutWithClearState = (): ILogoutWithClearState => {
     };
 }
 
-
-export const getTraceData = (id: string) => async (dispatch: Dispatch) => {
-    
-};
