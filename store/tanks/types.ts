@@ -1,4 +1,4 @@
-export interface TankState {
+export interface Tank {
     tankName: string,
     tankNumber: string,
     volume: string,
@@ -19,4 +19,10 @@ export enum AnalysisFrequency {
     MONTHLY = 'Monthly',
     QUATERLY = 'Quaterly',
     YEARLY = 'Yearly'
+};
+
+export enum ModalType {
+    EDIT = 'edit',
+    REGISTER = 'register',
+    VIEW = 'view'
 };
