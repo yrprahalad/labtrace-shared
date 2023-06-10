@@ -1,16 +1,18 @@
 export interface Tank {
-    tankName: string,
-    tankNumber: string,
-    volume: string,
-    depthAtVolume: string,
-    tankTemperature: number,
-    revision: number,
-    content: string,
-    analysisParameter: string,
-    specificationCtrlType: string,
-    analysisFreq: AnalysisFrequency,
-    userID: string,
-    id: string
+    _id: string
+    adminId: string
+    name: string
+    tankNumber: string
+    volume: string
+    depthAtVolume: string
+    temperature: number
+    revision: number
+    content: string
+    analysisParameter: string
+    specificationCtrlType: string
+    analysisFreq: AnalysisFrequency
+    createdTime: Date
+    lasUpdatedTime: Date
 };
 
 export enum AnalysisFrequency {

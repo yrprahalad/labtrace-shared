@@ -23,7 +23,7 @@ export const ADD_USERS_STATE = 'ADD_USERS_STATE';
 
 
 export interface User {
-    _id?: string
+    _id: string
     username: string,
     firstname: string,
     lastname: string,
@@ -37,7 +37,7 @@ export interface User {
     roles: Array<[]>,
     password: string
     shiftPattern: ShiftPattern | undefined,
-    traceId: string
+    adminId: string
 };
 
 export enum ModalType {
