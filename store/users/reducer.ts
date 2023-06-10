@@ -1,5 +1,5 @@
 import { updateById } from "../../helpers/constants";
-import { ModalType, UPDATE_USER, User, UserState, UserType, UserActionTypes, SET_MY_USER_DATA, TOGGLE_USER_MODAL } from "./types";
+import { ModalType, UPDATE_USER, User, UserState, UserType, UserActionTypes, SET_MY_USER_DATA, TOGGLE_USER_MODAL, SET_USERS } from "./types";
 
 export const initialUserData: User = {
     _id: "",
@@ -36,6 +36,11 @@ export function usersReducer(state = initialState, action: UserActionTypes): Use
             return {
                 ...state,
                 myData: action.myData
+            }
+        case SET_USERS:
+            return {
+                ...state,
+                users: action.users
             }
         case UPDATE_USER:
             let updatedUser = updateById(action.user, state.users);

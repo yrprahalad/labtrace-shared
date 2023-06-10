@@ -1,6 +1,7 @@
 export const UPDATE_USER = "UPDATE_USER"
 export const TOGGLE_USER_MODAL = "TOGGLE_USER_MODAL";
-export const SET_MY_USER_DATA = "SET_MY_USER_DATA"
+export const SET_MY_USER_DATA = "SET_MY_USER_DATA";
+export const SET_USERS = "SET_USERS";
 
 export interface UserState {
     users: Array<User>,
@@ -54,6 +55,11 @@ export interface Login {
     userType: UserType,
 };
 
+export interface SetUsers {
+    type: typeof SET_USERS,
+    users: Array<User>
+};
+
 export interface UpdateUser {
     type: typeof UPDATE_USER,
     user: User
@@ -71,4 +77,4 @@ export interface SetMyUserData {
     myData: User
 }
 
-export type UserActionTypes = UpdateUser | ToggleUserModal | SetMyUserData
+export type UserActionTypes = UpdateUser | ToggleUserModal | SetMyUserData | SetUsers;
