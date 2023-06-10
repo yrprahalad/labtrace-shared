@@ -1,6 +1,6 @@
-import { LoaderSeverityType, ISetLoaderInfo, SET_LOADER_INFO, IClearLoaderInfo, CLEAR_LOADER_INFO } from "./types";
+import { LoaderSeverityType, SetLoader, SET_LOADER_INFO, ClearLoader, CLEAR_LOADER_INFO } from "./types";
 
-export const setLoaderInfo = (severity: LoaderSeverityType, message: string, show: boolean): ISetLoaderInfo => {
+export const setLoader = (severity: LoaderSeverityType, message: string, show: boolean): SetLoader => {
     return {
         severity,
         message,
@@ -9,7 +9,7 @@ export const setLoaderInfo = (severity: LoaderSeverityType, message: string, sho
     }
 };
 
-export const clearLoaderInfo = (): IClearLoaderInfo => {
+export const clearLoader = (): ClearLoader => {
     return {
         type: CLEAR_LOADER_INFO,
     }

@@ -12,14 +12,14 @@ export enum LoaderSeverityType {
     SUCCESS = 'success',
     INFO = 'info'
 }
-export interface ISetLoaderInfo {
+export interface SetLoader {
     type: typeof SET_LOADER_INFO,
     severity: LoaderSeverityType,
     message: string,
     show: boolean
 }
-export interface IClearLoaderInfo {
+export interface ClearLoader {
     type: typeof CLEAR_LOADER_INFO,
 }
 
-export type LoaderActions = ISetLoaderInfo | IClearLoaderInfo;
+export type LoaderActions = SetLoader | ClearLoader;

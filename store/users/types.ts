@@ -1,26 +1,16 @@
-import { TraceData } from "../types";
+export const UPDATE_USER = "UPDATE_USER"
+export const TOGGLE_USER_MODAL = "TOGGLE_USER_MODAL";
+export const SET_MY_USER_DATA = "SET_MY_USER_DATA"
 
 export interface UserState {
-    loggedInInfo: {
-        token: string | undefined,
-        id: string | undefined
-    }
     users: Array<User>,
-    myData: User | undefined,
-    configureUser: {
-        userData: UserRegister,
-        isConfigureModalOpen: boolean,
+    myData: User,
+    userModal: {
+        user: User,
+        isOpen: boolean,
         modalType: ModalType
     }
 };
-
-export const SET_USER_LOGIN = "SET_USER_LOGIN";
-export const TOGGLE_MODIFY_USER_MODAL = 'TOGGLE_MODIFY_USER_MODAL';
-export const CONFIGURE_USER_DATA = 'CONFIGURE_USER_DATA';
-export const TOGGLE_CONFIGURE_USER_DATA_MODAL = 'TOGGLE_CONFIGURE_USER_DATA_MODAL';
-export const FETCH_USER_DATA = "FETCH_USER_DATA";
-export const ADD_USERS_STATE = 'ADD_USERS_STATE';
-
 
 export interface User {
     _id: string
@@ -40,33 +30,17 @@ export interface User {
     adminId: string
 };
 
-export enum ModalType {
-    EDIT = 'edit',
-    REGISTER = 'register',
-    VIEW = 'view'
-};
-
-export interface UserRegister extends User {
-    password: string,
-    confirmPassword: string
-};
-
 export enum UserType {
     ADMIN = 'Admin',
     USER = 'User',
     SUPERADMIN = 'Super User'
 };
 
-export interface UserLogin {
-    username: string,
-    password: string,
-    userType: UserType,
+export enum ModalType {
+    EDIT = 'edit',
+    REGISTER = 'register',
+    VIEW = 'view'
 };
-
-export interface LoginResponse {
-    token: string,
-    id: string
-}
 
 export interface ShiftPattern {
     from: string | Date,
@@ -74,37 +48,27 @@ export interface ShiftPattern {
     descripton: string
 };
 
-export interface ToggleConfigureUserModal {
-    type: typeof TOGGLE_MODIFY_USER_MODAL,
-    modalType: ModalType,
-    isConfigureModalOpen: boolean
-}
-
-export interface SetUserLogin {
-    type: typeof SET_USER_LOGIN,
-    payload: LoginResponse
-}
-export interface SetMyUserDataForModify {
-    type: typeof CONFIGURE_USER_DATA,
-    payload: UserRegister
+export interface Login {
+    username: string,
+    password: string,
+    userType: UserType,
 };
 
-export interface ToggleConfigureUserDataModal {
-    type: typeof TOGGLE_CONFIGURE_USER_DATA_MODAL,
-    configureUserData: UserRegister,
-    isModalOpen: boolean,
-    modalType: ModalType
-}
-export interface FetchTraceData {
-    type: typeof FETCH_USER_DATA,
-    payload: TraceData
+export interface UpdateUser {
+    type: typeof UPDATE_USER,
+    user: User
 }
 
-export interface AddUsersToState {
-    type: typeof ADD_USERS_STATE,
-    initialCall: boolean,
-    user: User | undefined,
-    users: Array<User> | undefined
+export interface ToggleUserModal {
+    type: typeof TOGGLE_USER_MODAL,
+    user: User,
+    modalType: ModalType,
+    isOpen: boolean
 }
 
-export type UserActionTypes = SetMyUserDataForModify | ToggleConfigureUserModal | SetUserLogin | ToggleConfigureUserDataModal | FetchTraceData | AddUsersToState;
+export interface SetMyUserData {
+    type: typeof SET_MY_USER_DATA,
+    myData: User
+}
+
+export type UserActionTypes = UpdateUser | ToggleUserModal | SetMyUserData

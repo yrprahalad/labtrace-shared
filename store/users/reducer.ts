@@ -1,8 +1,8 @@
-import { UserState, UserActionTypes, UserType, TOGGLE_MODIFY_USER_MODAL, ModalType, SET_USER_LOGIN, UserRegister, TOGGLE_CONFIGURE_USER_DATA_MODAL, FETCH_USER_DATA, ADD_USERS_STATE } from "./types";
+import { updateById } from "../../helpers/constants";
+import { ModalType, UPDATE_USER, User, UserState, UserType, UserActionTypes, SET_MY_USER_DATA, TOGGLE_USER_MODAL } from "./types";
 
-export const initialUserRegister: UserRegister = {
-    password: "",
-    confirmPassword: "",
+export const initialUserData: User = {
+    _id: "",
     username: "",
     firstname: "",
     lastname: "",
@@ -12,68 +12,50 @@ export const initialUserRegister: UserRegister = {
     isActive: false,
     hourlyChargingRate: "",
     jobTitle: "",
-    userType: UserType.USER,
+    userType: UserType.ADMIN,
     roles: [],
+    password: "",
     shiftPattern: undefined,
-    traceId: ""
+    adminId: ""
 }
 
 const initialState: UserState = {
-    loggedInInfo: {
-        token: undefined,
-        id: undefined
-    },
     users: [],
-    myData: undefined,
-    configureUser: {
-        userData: initialUserRegister,
-        isConfigureModalOpen: false,
-        modalType: ModalType.REGISTER
+    myData: initialUserData,
+    userModal: {
+        user: initialUserData,
+        isOpen: false,
+        modalType: ModalType.EDIT
     }
 };
 
 export function usersReducer(state = initialState, action: UserActionTypes): UserState {
     switch (action.type) {
-        case SET_USER_LOGIN:
-            return {
-                ...state,
-                loggedInInfo: action.payload
-            }
-        case TOGGLE_CONFIGURE_USER_DATA_MODAL:
-            let configureData = {
-                ...state.configureUser,
-                userData: action.configureUserData,
-                modalType: action.modalType,
-                isConfigureModalOpen: action.isModalOpen
-            }
-            return {
-                ...state,
-                configureUser: configureData
-            };
-        case FETCH_USER_DATA:
-            return {
-                ...state,
-                myData: action.payload.myData,
-                users: action.payload.users
-            }
-        case ADD_USERS_STATE:
-            if (action.initialCall) {
-                return {
-                    ...state
-                }
-            } else {
-                if (action.user) {
-                    let users = state.users;
-                    users.push(action.user)
-                    return {
-                        ...state,
-                        users
-                    }
-                } else return { ...state }
-            }
 
-
+        case SET_MY_USER_DATA:
+            return {
+                ...state,
+                myData: action.myData
+            }
+        case UPDATE_USER:
+            let updatedUser = updateById(action.user, state.users);
+            return {
+                ...state,
+                users: updatedUser
+            }
+        case TOGGLE_USER_MODAL:
+            let userModal = {
+                ...state.userModal,
+                isOpen: action.isOpen,
+                user: action.user,
+                modalType: action.modalType
+            }
+            return {
+                ...state,
+                userModal
+            }
         default:
             return state;
     }
 }
+

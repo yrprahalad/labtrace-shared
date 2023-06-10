@@ -23,6 +23,13 @@ export interface TraceData {
     tanks: undefined
 }
 
+export enum ModalType {
+    EDIT = 'edit',
+    REGISTER = 'register',
+    VIEW = 'view'
+};
+
+
 export const LOGOUT_WITH_CLEAR_STATE = "LOGOUT_WITH_CLEAR_STATE";
 
 export interface ILogoutWithClearState {
