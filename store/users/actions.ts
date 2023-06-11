@@ -70,7 +70,7 @@ export const getUsers = (id: string): any => {
     };
 }
 
-export const addUser = (payload: User): any => {
+export const addUser = (payload: User, done?: () => void): any => {
     const headers = {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Access-Control-Allow-Origin': '*',
@@ -82,6 +82,7 @@ export const addUser = (payload: User): any => {
             const user: User = response.data;
             dispatch(updateUsers(user));
             dispatch(setLoader(LoaderSeverityType.SUCCESS, 'User added Successful', true));
+            done && done()
         } catch (error) {
             dispatch(setLoader(LoaderSeverityType.ERROR, apiErrorMessage(error), true));
         };
