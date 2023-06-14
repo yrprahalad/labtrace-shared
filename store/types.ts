@@ -1,4 +1,5 @@
 import { LoaderState } from "./loader/types";
+import { TankState } from "./tanks/types";
 import { ShiftPattern, User, UserState } from "./users/types";
 
 export enum LearnEntityEnum {
@@ -13,7 +14,8 @@ export enum LearnEntityEnum {
 };
 
 export interface ApplicationState {
-    user: UserState,
+    user: UserState
+    tank: TankState
     loader: LoaderState
 };
 
@@ -26,7 +28,8 @@ export interface TraceData {
 export enum ModalType {
     EDIT = 'edit',
     REGISTER = 'register',
-    VIEW = 'view'
+    VIEW = 'view',
+    ADD = 'add'
 };
 
 

@@ -40,7 +40,8 @@ export enum UserType {
 export enum ModalType {
     EDIT = 'edit',
     REGISTER = 'register',
-    VIEW = 'view'
+    VIEW = 'view',
+    ADD = 'add'
 };
 
 export interface ShiftPattern {
