@@ -20,13 +20,15 @@ export interface Tank {
     name: string
     tankNumber: string
     volume: string
-    depthAtVolume: string
-    temperature: number
     revision: number
     content: string
+    analysisFreq: AnalysisFrequency
+    
+    depthAtVolume: string
+    temperature: number
     analysisParameter: string
     specificationCtrlType: string
-    analysisFreq: AnalysisFrequency
+
     createdTime?: Date
     lasUpdatedTime?: Date
 };

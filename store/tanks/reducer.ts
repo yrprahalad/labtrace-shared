@@ -45,7 +45,7 @@ export function tanksReducer(state = initialState, action: TankActionTypes): Tan
             let tankModal = {
                 ...state.tankModal,
                 isOpen: action.isOpen,
-                user: action.tank,
+                tank: action.tank,
                 modalType: action.modalType
             }
             return {
